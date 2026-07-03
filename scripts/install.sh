@@ -40,17 +40,19 @@ sudo install -d -m 0755 /etc/apt/keyrings
 # Import the Mozilla APT repository signing key:
 wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 
-# The fingerprint should be 35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3.
-# You may check it with the following command:
+# Check fingerprint.
 fingerprint=$(
     gpg --show-keys --with-colons /etc/apt/keyrings/packages.mozilla.org.asc \
         | awk -F: '/^fpr:/ {print $10; exit}'
 )
 
-[ "$fingerprint" = "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3" ] || {
+# The fingerprint should be 35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3.
+if [ "$fingerprint" = "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3" ]; then
+    echo "Mozilla APT repository fingerprint matches!"
+else
     echo "Mozilla APT repository fingerprint mismatch!"
     exit 1
-}
+fi
 
 # Next, add the Mozilla APT repository to your sources.list:
 sudo tee /etc/apt/sources.list.d/mozilla.sources > /dev/null << EOF
