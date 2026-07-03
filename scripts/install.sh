@@ -1,3 +1,6 @@
+# Exit on error
+set -e
+
 ##### Remove snap #####
 # https://itsfoss.com/remove-snap/
 
@@ -10,8 +13,13 @@ sudo systemctl disable snapd.seeded.service
 sudo apt-get remove --purge snapd
 
 # Remove stray files
-sudo rm -rf /var/cache/snapd/
-rm -rf ~/snap
+if [ -d /var/cache/snapd ]; then
+    sudo rm -rf /var/cache/snapd
+fi
+
+if [ -d ~/snap ]; then
+    rm -rf ~/snap
+fi
 
 # Block re-entry of snap
 sudo tee /etc/apt/preferences.d/nosnap > /dev/null << EOF
@@ -34,7 +42,15 @@ wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /et
 
 # The fingerprint should be 35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3.
 # You may check it with the following command:
-gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | awk '/pub/{getline; gsub(/^ +| +$/,""); if($0 == "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3") print "\nThe key fingerprint matches ("$0").\n"; else print "\nVerification failed: the fingerprint ("$0") does not match the expected one.\n"}'
+fingerprint=$(
+    gpg --show-keys --with-colons /etc/apt/keyrings/packages.mozilla.org.asc \
+        | awk -F: '/^fpr:/ {print $10; exit}'
+)
+
+[ "$fingerprint" = "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3" ] || {
+    echo "Mozilla APT repository fingerprint mismatch!"
+    exit 1
+}
 
 # Next, add the Mozilla APT repository to your sources.list:
 sudo tee /etc/apt/sources.list.d/mozilla.sources > /dev/null << EOF
