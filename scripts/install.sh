@@ -3,7 +3,7 @@
 # Exit on error
 set -e
 
-##### Remove snap #####
+##### Remove and block snap #####
 # https://itsfoss.com/remove-snap/
 
 # Stop snapd services
@@ -34,7 +34,7 @@ EOF
 # Update package list
 sudo apt-get update
 
-##### Add mozilla APT repository #####
+##### Firefox repository #####
 # https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-and-ubuntu-based-distributions-recommended
 
 # Create directory to store APT repository keys if it doesn't exist:
@@ -73,7 +73,29 @@ Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 EOF
 
-# Update package list
+sudo apt-get update
+
+##### Zotero repository #####
+# https://zotero.retorque.re/file/apt-package-archive/index.html
+
+curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash -s -- -m sources
+
+sudo apt-get update
+
+##### Teams repository #####
+# https://ismaelmartinez.github.io/teams-for-linux/installation/
+
+sudo wget -qO /etc/apt/keyrings/teams-for-linux.asc https://repo.teamsforlinux.de/teams-for-linux.asc
+
+sudo tee /etc/apt/sources.list.d/teams-for-linux-packages.sources > /dev/null << EOF
+Types: deb
+URIs: https://repo.teamsforlinux.de/debian/
+Suites: stable
+Components: main
+Signed-By: /etc/apt/keyrings/teams-for-linux.asc
+Architectures: amd64
+EOF
+
 sudo apt-get update
 
 ##### Install packages #####
