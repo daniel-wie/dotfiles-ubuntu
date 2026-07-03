@@ -8,7 +8,6 @@ ripgrep
 starship
 stow
 teams-for-linux
-texlive-full
 tree
 zathura
 zip
