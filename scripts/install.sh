@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Exit on error
 set -e
 
@@ -11,6 +13,7 @@ sudo systemctl disable snapd.seeded.service
 
 # Uninstall
 sudo apt-get remove --purge snapd
+sudo apt-get autoremove --purge
 
 # Remove stray files
 if [ -d /var/cache/snapd ]; then
@@ -70,6 +73,15 @@ Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 EOF
 
-# Update your package list, and install firefox:
+# Update package list
 sudo apt-get update
-sudo apt-get install firefox
+
+##### Install packages #####
+
+# Repository packages
+sudo apt-get install $(cat packages/apt.txt)
+
+# Manual packages
+for p in packages/*.sh; do
+    "./$p"
+done

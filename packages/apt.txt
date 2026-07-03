@@ -1,0 +1,16 @@
+fd-find
+filezilla
+firefox
+nodejs
+pcmanfm
+pympress
+ripgrep
+starship
+stow
+teams-for-linux
+texlive-full
+tree
+zathura
+zip
+zotero
+zsh
