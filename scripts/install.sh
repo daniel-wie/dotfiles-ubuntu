@@ -100,10 +100,10 @@ sudo apt-get update
 
 ##### Install packages #####
 
-# Repository packages
+# Repository
 sudo apt-get install $(cat packages/apt.txt)
 
-# Manual packages
+# Manual
 for p in packages/*.sh; do
     "./$p"
 done
