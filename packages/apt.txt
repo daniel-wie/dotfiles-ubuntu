@@ -1,10 +1,12 @@
 fd-find
 filezilla
 firefox
+libssl-dev
 nodejs
 pcmanfm
 pympress
 ripgrep
+rustup
 starship
 stow
 teams-for-linux

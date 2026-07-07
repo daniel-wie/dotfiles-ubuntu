@@ -103,6 +103,9 @@ sudo apt-get update
 # Repository
 sudo apt-get install $(cat packages/apt.txt)
 
+# Set Rust installation
+rustup default stable
+
 # Manual
 for p in packages/*.sh; do
     "./$p"
