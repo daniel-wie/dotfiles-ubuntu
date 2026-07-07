@@ -1,7 +1,16 @@
 #!/bin/bash
 
-# Exit on error
-set -e
+# Run this script from the cloned repository!
+
+# Create directories
+mkdir -p ~/.config
+mkdir -p ~/.local/share
+mkdir -p ~/.local/state
+mkdir -p ~/.cache
+mkdir -p ~/.ssh
+
+# Set permissions
+chmod 700 ~/.ssh
 
 ##### Remove and block snap #####
 # https://itsfoss.com/remove-snap/
@@ -103,6 +112,13 @@ sudo apt-get update
 # Repository
 sudo apt-get install $(cat packages/apt.txt)
 
+# Symlink home directory to dotfiles
+stow home
+
+# Set shell to zsh
+chsh -s $(which zsh)
+ln -sf $(pwd)/etc/security/pam_env.conf /etc/security/pam_env.conf
+
 # Set Rust installation
 rustup default stable
 
@@ -110,3 +126,6 @@ rustup default stable
 for p in packages/*.sh; do
     "./$p"
 done
+
+# Finalize
+printf '\033[1mCustom installation is done. Please reboot.\n'
