@@ -5,7 +5,7 @@ case $- in
 esac
 
 # Aliases
-. ~/.dotfiles/home/.config/shell/alias
+. ~/.config/shell/alias
 
 # Plugin options
 zstyle ':zephyr:plugin:editor' key-bindings vi
