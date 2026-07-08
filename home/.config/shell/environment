@@ -8,9 +8,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Use neovim as manpager
 # export MANPAGER='nvim --clean +Man!'
 
-# ssh-agent setup with systemd user unit
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
 # texlive
 export MANPATH="$MANPATH:$HOME/.local/texlive/2026/texmf-dist/doc/man"
 export INFOPATH="$INFOPATH:$HOME/.local/texlive/2026/texmf-dist/doc/info"
