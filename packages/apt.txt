@@ -1,6 +1,7 @@
 fd-find
 filezilla
 firefox
+fonts-noto-color-emoji
 libssl-dev
 nodejs
 pcmanfm
