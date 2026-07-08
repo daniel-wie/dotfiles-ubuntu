@@ -112,12 +112,16 @@ sudo apt-get update
 # Repository
 sudo apt-get install $(cat packages/apt.txt)
 
+# Remove unneeded packages
+sudo apt-get remove --purge gnome-keyring libgcr-4-4 gnome-themes-extra-data pinentry-gnome3
+sudo apt-get autoremove --purge
+
 # Symlink home directory to dotfiles
 stow home
 
 # Set shell to zsh
 chsh -s $(which zsh)
-ln -sf $(pwd)/etc/security/pam_env.conf /etc/security/pam_env.conf
+sudo ln -sf $(pwd)/etc/security/pam_env.conf /etc/security/pam_env.conf
 
 # Set Rust installation
 rustup default stable
