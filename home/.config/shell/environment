@@ -13,12 +13,9 @@ export MANPATH="$MANPATH:$HOME/.local/texlive/2026/texmf-dist/doc/man"
 export INFOPATH="$INFOPATH:$HOME/.local/texlive/2026/texmf-dist/doc/info"
 
 # gurobi
-export GUROBI_HOME="$HOME/.local/gurobi1300/linux64"
+export GUROBI_HOME="$HOME/.local/gurobi1302/linux64"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$GUROBI_HOME/lib"
-export GRB_LICENSE_FILE="$HOME/gurobi.lic"
-
-# nvm
-export NVM_DIR="$HOME/.config/nvm"
+export GRB_LICENSE_FILE="$XDG_DATA_HOME/gurobi.lic"
 
 # Default programs
 # https://wiki.archlinux.org/title/Environment_variables#Default_programs
