@@ -6,6 +6,7 @@ libssl-dev
 nodejs
 pcmanfm
 pympress
+qimgv
 ripgrep
 rustup
 starship
