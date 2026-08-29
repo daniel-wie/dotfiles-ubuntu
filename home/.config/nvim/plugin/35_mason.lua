@@ -16,6 +16,7 @@ local ensure_installed = {
 	"tex-fmt", -- LaTeX formatting
 	"prettierd", -- Markdown formatting
 	"ltex-ls-plus", -- Spell checker
+	"ruff", -- Python formatting
 	"shfmt", -- Shell formatting
 }
 
