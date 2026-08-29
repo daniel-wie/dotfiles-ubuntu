@@ -4,6 +4,7 @@ firefox
 fonts-noto-color-emoji
 libssl-dev
 nodejs
+npm
 pcmanfm
 pympress
 qimgv
