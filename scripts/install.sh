@@ -58,7 +58,6 @@ fingerprint=$(
         | awk -F: '/^fpr:/ {print $10; exit}'
 )
 
-# The fingerprint should be 35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3.
 if [ "$fingerprint" = "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3" ]; then
     echo "Mozilla APT repository fingerprint matches!"
 else
@@ -66,7 +65,6 @@ else
     exit 1
 fi
 
-# Next, add the Mozilla APT repository to your sources.list:
 sudo tee /etc/apt/sources.list.d/mozilla.sources > /dev/null << EOF
 Types: deb
 URIs: https://packages.mozilla.org/apt
@@ -113,7 +111,7 @@ sudo apt-get update
 sudo apt-get install $(cat packages/apt.txt)
 
 # Remove unneeded packages
-sudo apt-get remove --purge gnome-keyring libgcr-4-4 gnome-themes-extra-data pinentry-gnome3
+sudo apt-get remove --purge gnome-themes-extra-data pinentry-gnome3
 sudo apt-get autoremove --purge
 
 # Symlink home directory to dotfiles
@@ -123,10 +121,7 @@ stow home
 chsh -s $(which zsh)
 sudo ln -sf $(pwd)/etc/security/pam_env.conf /etc/security/pam_env.conf
 
-# Set Rust installation
-rustup default stable
-
-# Manual
+# Manual installations
 for p in packages/*.sh; do
     "./$p"
 done
