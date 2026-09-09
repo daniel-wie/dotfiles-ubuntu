@@ -1,49 +1,6 @@
 #!/bin/bash
 
-# Run this script from the cloned repository!
-
-# Create directories
-mkdir -p ~/.config
-mkdir -p ~/.local/share
-mkdir -p ~/.local/state
-mkdir -p ~/.cache
-mkdir -p ~/.ssh
-
-# Set permissions
-chmod 700 ~/.ssh
-
-##### Remove and block snap #####
-# https://itsfoss.com/remove-snap/
-
-# Stop snapd services
-sudo systemctl disable snapd.service
-sudo systemctl disable snapd.socket
-sudo systemctl disable snapd.seeded.service
-
-# Uninstall
-sudo apt-get remove --purge snapd
-sudo apt-get autoremove --purge
-
-# Remove stray files
-if [ -d /var/cache/snapd ]; then
-    sudo rm -rf /var/cache/snapd
-fi
-
-if [ -d ~/snap ]; then
-    rm -rf ~/snap
-fi
-
-# Block re-entry of snap
-sudo tee /etc/apt/preferences.d/nosnap > /dev/null << EOF
-Package: snapd
-Pin: release a=*
-Pin-Priority: -10
-EOF
-
-# Update package list
-sudo apt-get update
-
-##### Firefox repository #####
+##### Firefox #####
 # https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-and-ubuntu-based-distributions-recommended
 
 # Create directory to store APT repository keys if it doesn't exist:
@@ -82,14 +39,14 @@ EOF
 
 sudo apt-get update
 
-##### Zotero repository #####
+##### Zotero #####
 # https://zotero.retorque.re/file/apt-package-archive/index.html
 
 curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash -s -- -m sources
 
 sudo apt-get update
 
-##### Teams repository #####
+##### Teams #####
 # https://ismaelmartinez.github.io/teams-for-linux/installation/
 
 sudo wget -qO /etc/apt/keyrings/teams-for-linux.asc https://repo.teamsforlinux.de/teams-for-linux.asc
@@ -104,27 +61,3 @@ Architectures: amd64
 EOF
 
 sudo apt-get update
-
-##### Install packages #####
-
-# Repository
-sudo apt-get install $(cat packages/apt.txt)
-
-# Remove unneeded packages
-sudo apt-get remove --purge gnome-themes-extra-data pinentry-gnome3
-sudo apt-get autoremove --purge
-
-# Symlink home directory to dotfiles
-stow home
-
-# Set shell to zsh
-chsh -s $(which zsh)
-sudo ln -sf $(pwd)/etc/security/pam_env.conf /etc/security/pam_env.conf
-
-# Manual installations
-for p in packages/*.sh; do
-    "./$p"
-done
-
-# Finalize
-printf '\033[1mCustom installation is done. Please reboot.\n'

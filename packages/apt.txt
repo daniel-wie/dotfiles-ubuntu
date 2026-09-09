@@ -9,7 +9,6 @@ pcmanfm
 pympress
 qimgv
 ripgrep
-rustup
 starship
 stow
 teams-for-linux
