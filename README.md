@@ -12,6 +12,7 @@ repository! First, create some directories
 ```
 mkdir -p ~/.config
 mkdir -p ~/.local/share
+mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/state
 mkdir -p ~/.cache
 mkdir -p ~/.ssh
@@ -38,6 +39,8 @@ for p in packages/*.sh; do
 done
 ```
 
+Install Obsidian notes by downloading the latest `.deb` from [releases](https://github.com/obsidianmd/obsidian-releases/releases).
+
 Remove some unneeded packages:
 
 ```
@@ -48,8 +51,9 @@ sudo apt-get autoremove --purge
 Set shell to `zsh` `chsh -s $(which zsh)` and `ZDOTDIR` with
 `sudo ln -sf $(pwd)/etc/security/pam_env.conf /etc/security/pam_env.conf`.
 
-Lastly, the repository [`home`](./home/) directory is symlinked to the actual home using
-`stow home`.
+Symlink repository [`./home`](./home/) to `$HOME` using
+
+`stow --dir="$HOME/Code/dotfiles-ubuntu" --target="$HOME" home`.
 
 ## Maintenance and Updates
 

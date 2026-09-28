@@ -1,11 +1,15 @@
+bluez
 fd-find
 filezilla
 firefox
 fonts-noto-color-emoji
 libssl-dev
+network-manager
 nodejs
 npm
 pcmanfm
+pipewire
+pipewire-pulse
 pympress
 qimgv
 ripgrep
@@ -13,6 +17,7 @@ starship
 stow
 teams-for-linux
 tree
+wireplumber
 zathura
 zip
 zotero
