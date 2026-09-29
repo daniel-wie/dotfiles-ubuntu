@@ -55,6 +55,14 @@ Symlink repository [`./home`](./home/) to `$HOME` using
 
 `stow --dir="$HOME/Code/dotfiles-ubuntu" --target="$HOME" home`.
 
+### Screencast
+
+Niri requires `xdg-desktop-portal-gnome` by default,
+but this pulls in a LOT of dependencies.
+I do not like this, so I use [niri-screenshare](https://github.com/pantarune/niri-screenshare) instead.
+The required (build) dependencies are (`cargo`), `gtk4`, `libadwaita`,
+`xdg-desktop-portal`, `pipewire`, and `niri`.
+
 ## Maintenance and Updates
 
 ### Repositories:
