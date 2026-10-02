@@ -1,2 +1,6 @@
+# zsh files
 .zcompdump
 .zsh_plugins.zsh
+
+# julia environment
+Manifest.toml
