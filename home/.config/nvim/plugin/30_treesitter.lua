@@ -37,6 +37,7 @@ require("nvim-treesitter").install({
 	"html",
 	"json",
 	"julia",
+	"kdl",
 	"latex",
 	"lua",
 	"markdown",
