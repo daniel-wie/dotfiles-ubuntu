@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Neovim
+Comment=Hyperextensible Vim-based text editor
+Exec=nvim
+Icon=nvim
+Type=Application
+Categories=Development;Office;
+Terminal=true
+MimeType=text/plain;
