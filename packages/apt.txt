@@ -18,6 +18,7 @@ stow
 teams-for-linux
 tree
 wireplumber
+wl-clipboard
 zathura
 zip
 zotero
