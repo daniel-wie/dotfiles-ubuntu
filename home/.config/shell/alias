@@ -14,5 +14,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias sq='squeue'
 alias squ='squeue -u $USER'
 
-# copilot
-alias copilot='copilot --disallow-temp-dir'
+# mount Z:
+alias mountz='sudo mount --verbose -t cifs -o vers=3.0,noauto,noexec,users,uid=dwieser,gid=users,sec=ntlmssp,credentials=/home/dwieser/.local/share/secrets.txt,iocharset=utf8,x-gvfs-show //file01.arc.local/Austausch/ /mnt/z'
