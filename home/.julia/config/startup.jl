@@ -7,8 +7,6 @@ ENV["PYCALL_JL_RUNTIME_PYTHON"] = Sys.which("python")
 if isinteractive()
     # Start Revise automatically
     try
-        using Pkg
-        Pkg.activate(joinpath(homedir(), ".julia/environments/main"))
         using Revise
     catch e
         @warn "Error initializing Revise" exception = (e, catch_backtrace())
@@ -16,6 +14,7 @@ if isinteractive()
 
     # Activate current environment if existing
     if isfile("Project.toml")
+        using Pkg
         Pkg.activate(".")
     end
 end
